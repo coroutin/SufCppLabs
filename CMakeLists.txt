@@ -11,5 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra")
 add_executable(lab01_task7 lab01/task7.cpp)
 # Лабораторная работа 2
 add_executable(lab02_task15 lab02/task15.cpp)
+# Лабораторная работа 3
+add_executable(lab03_task19 lab03/task19.cpp)
 #Трэш
 add_executable(trash sufTrash/trash.cpp)
