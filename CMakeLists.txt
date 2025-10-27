@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra")
 
 # Лабораторная работа 1
+add_executable(lab01_task6 lab01/task6.cpp)
 add_executable(lab01_task7 lab01/task7.cpp)
 # Лабораторная работа 2
 add_executable(lab02_task15 lab02/task15.cpp)
