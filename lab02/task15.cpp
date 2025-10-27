@@ -28,7 +28,7 @@ int Age(int b_year, int b_mon, int b_day) {
 }
 
 //Проверяем на день рождения
-bool birthday(int b_mon, int b_day) {
+bool Birthday(int b_mon, int b_day) {
 
     bool birthday = false; //Флаг дня рождения
 
@@ -115,7 +115,7 @@ int main() {
     int year, mon, day; //Переменные для хранения введённого года месяца и дня
     krasota();
     std::cin >> year >> mon >> day;
-    if (birthday(mon, day)) {dr();}
+    if (Birthday(mon, day)) {dr();}
     else if (Age(year, mon, day) >= 18) {vodila();}
     else {ne_vodila();}
     return 0;
