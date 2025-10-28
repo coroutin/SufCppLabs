@@ -8,10 +8,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra")
 
 # Лабораторная работа 1
+add_executable(lab01_task1 lab01/task1.cpp)
+add_executable(lab01_task2 lab01/task2.cpp)
+add_executable(lab01_task3 lab01/task3.cpp)
+add_executable(lab01_task4 lab01/task4.cpp)
+add_executable(lab01_task5 lab01/task5.cpp)
 add_executable(lab01_task6 lab01/task6.cpp)
 add_executable(lab01_task7 lab01/task7.cpp)
+
 # Лабораторная работа 2
+add_executable(lab02_task1 lab02/task1.cpp)
+add_executable(lab02_task2 lab02/task2.cpp)
+add_executable(lab02_task3 lab02/task3.cpp)
+add_executable(lab02_task4 lab02/task4.cpp)
+add_executable(lab02_task5 lab02/task5.cpp)
+add_executable(lab02_task6 lab02/task6.cpp)
+add_executable(lab02_task7 lab02/task7.cpp)
+add_executable(lab02_task8 lab02/task8.cpp)
+add_executable(lab02_task9 lab02/task9.cpp)
+add_executable(lab02_task10 lab02/task10.cpp)
+add_executable(lab02_task11 lab02/task11.cpp)
+add_executable(lab02_task12 lab02/task12.cpp)
 add_executable(lab02_task15 lab02/task15.cpp)
+
 # Лабораторная работа 3
 add_executable(lab03_task1 lab03/task1.cpp)
 add_executable(lab03_task2 lab03/task2.cpp)
