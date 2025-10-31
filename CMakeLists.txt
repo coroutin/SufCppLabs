@@ -29,6 +29,8 @@ add_executable(lab02_task9 lab02/task9.cpp)
 add_executable(lab02_task10 lab02/task10.cpp)
 add_executable(lab02_task11 lab02/task11.cpp)
 add_executable(lab02_task12 lab02/task12.cpp)
+add_executable(lab02_task13 lab02/task13.cpp)
+add_executable(lab02_task14 lab02/task14.cpp)
 add_executable(lab02_task15 lab02/task15.cpp)
 
 # Лабораторная работа 3
