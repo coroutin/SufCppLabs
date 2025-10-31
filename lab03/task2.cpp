@@ -1,11 +1,9 @@
 #include <iostream>
 
-using namespace std;
-
 int main() {
     long long n, n1;
     int k = 0;
-    cin >> n;
+    std::cin >> n;
     n1 = n;
     while (n1 > 0) {
         k++;
@@ -21,7 +19,7 @@ int main() {
     long long md = n % p;
     md /= 10;
     long long nn = ld * p + md * 10 + fd;
-    cout << nn << endl;
-    cout << nn * 2;
+    std::cout << nn << std::endl;
+    std::cout << nn * 2;
     return 0;
 }
