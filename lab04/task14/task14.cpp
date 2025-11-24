@@ -6,14 +6,14 @@ void init_game(long &pile, int &max_stones, bool &computer_mode)
 {
     std::cout << "Введите количество камней: ";
     std::cin >> pile;
-    if (pile <= 0) {
+    while (pile <= 0){
         std::cout << "Неадекватное число камней, введите число ещё раз.";
         std::cin >> pile;
     }
 
     std::cout << "Введите максимум камней за ход: ";
     std::cin >> max_stones;
-    if (max_stones <= 0 || max_stones > pile) {
+    while (max_stones <= 0 || max_stones > pile) {
         std::cout << "Неадекватное число камней, введите число ещё раз.";
         std::cin >> max_stones;
     }
@@ -21,7 +21,7 @@ void init_game(long &pile, int &max_stones, bool &computer_mode)
     int mode;
     std::cout << "Режим (1 — компьютер знает стратегию, 2 — компьютер не знает стратегии): ";
     std::cin >> mode;
-    if (mode != 1 && mode != 2) {
+    while (mode != 1 && mode != 2) {
         std::cout << "Неадекватное число выбора режима, введите число ещё раз.";
         std::cin >> mode;
     }
@@ -39,7 +39,7 @@ void player_move(long &pile, int max_stones)
     int take;
     std::cout << "Ваш ход. Введите число камней: ";
     std::cin >> take;
-    if (take <= 0 || take > max_stones) {
+    while (take <= 0 || take > max_stones || take > pile) {
         std::cout << "Неадекватное число камней, введите число ещё раз.";
         std::cin >> take;
     }

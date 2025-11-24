@@ -4,14 +4,25 @@
 
 int player_move(int move) {
     int dig;
+    bool first = true;
 
     std::cout << "Ход " << move << " — введите цифру (0..9): ";
     std::cin >> dig;
 
-    if (dig < 0 || 9 < dig) {
+    if (first) {
+        while (dig <= 0 || 9 < dig) {
+            std::cout << "Неадекватное число, ведите число ещё раз: ";
+            std::cin >> dig;
+        }
+        first = false;
+    }
+
+    while (dig < 0 || 9 < dig) {
         std::cout << "Неадекватное число, ведите число ещё раз: ";
         std::cin >> dig;
+        first = false;
     }
+
     return dig;
 }
 
@@ -38,10 +49,10 @@ void check_winner(int num, int remainder) {
     std::cout << '\n';
 
     if (end) {
-        std::cout << "Число делится на 9. Победил: "
+        std::cout << "Число делится на 9. Победил последний игрок: "
                   << (last_player ? "Вы" : "Компьютер");
     } else {
-        std::cout << "Число НЕ делится на 9 → проиграл последний игрок: "
+        std::cout << "Число не делится на 9. Проиграл последний игрок: "
                   << (last_player ? "Вы" : "Компьютер");
     }
 }

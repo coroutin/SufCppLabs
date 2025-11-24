@@ -1,17 +1,19 @@
 #include <iostream>
 
-int div(long long num) {
+int del_count(long long num) {
+    if (num <= 0) return 0;
+
     int c = 0;
-    for (long long i = 1; i <= num; i++) {
+    for (long long i = 1; i * i <= num; i++) {
         if (num % i == 0) {
-            c++;
+            c += (i == num / i) ? 1 : 2;
         }
     }
     return c;
 }
 
 int main() {
-    int n;
+    long long n;
     std::cin >> n;
-    std::cout << div(n);
+    std::cout << del_count(n);
 }

@@ -7,7 +7,7 @@ int main() {
     std::cout << "Введите длину числа (1..100): ";
     std::cin >> num;
 
-    if (num < 1 || num > 100) {
+    while (num < 1 || num > 100) {
         std::cout << "Неверная длина числа." << '\n';
         std::cin >> num;
     }
