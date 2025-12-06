@@ -84,7 +84,7 @@ add_executable(lab05_task10 lab05/task10.cpp)
 add_executable(lab05_task12 lab05/task12.cpp)
 add_executable(lab05_task13 lab05/task13.cpp)
 add_executable(lab05_task14 lab05/task14.cpp)
-add_executable(lab05_task15 lab05/task15.cpp)
+add_executable(lab05_task15 lab05/task15_submit.cpp)
 add_executable(lab05_task17 lab05/task17.cpp)
 add_executable(lab05_task18 lab05/task18.cpp)
 
