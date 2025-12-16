@@ -93,5 +93,9 @@ add_executable(lab06_task8 lab06/task8.cpp)
 add_executable(lab06_task9 lab06/task9.cpp)
 add_executable(lab06_task10 lab06/task10.cpp)
 
+#Лабораторная работа 7
+add_executable(lab07_task12 lab07/task12.cpp)
+add_executable(lab07_task13 lab07/task13.cpp)
+add_executable(lab07_task14 lab07/task14.cpp)
 #Трэш
 add_executable(trash trash.cpp)
