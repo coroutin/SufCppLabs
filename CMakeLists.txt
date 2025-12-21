@@ -101,5 +101,11 @@ add_executable(lab07_task14 lab07/task14.cpp)
 #Лабораторная работа 8
 add_executable(lab08_task lab08/main.cpp lab08/array_funcs.cpp)
 
+#Лабораторная работа 9
+add_executable(lab09_task11 lab09/task11.cpp)
+add_executable(lab09_task12 lab09/task12.cpp)
+add_executable(lab09_task13 lab09/task13.cpp)
+add_executable(lab09_task14 lab09/task14.cpp)
+
 #Трэш
 add_executable(trash trash.cpp)
