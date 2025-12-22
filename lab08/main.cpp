@@ -32,7 +32,7 @@ int main() {
         cin >> choice;
 
         // Защита от операций с пустым массивом
-        if (arr == nullptr && choice >= 2 && choice <= 18 && choice != 15) {
+        if (arr == nullptr && choice >= 2 && choice <= 18 && choice != 15 && choice != 14) {
             cout << "Ошибка: сначала создайте массив (пункт 1 или 15)!\n";
             continue;
         }
@@ -176,22 +176,27 @@ int main() {
             }
 
             case 11: {
-                int idx;
-                bool valid = false;
-                while (!valid) {
-                    cout << "Введите индекс для удаления (0.." << size - 1 << "): ";
-                    if (cin >> idx && idx >= 0 && idx < size) {
-                        valid = true;
-                    } else {
-                        cout << "Ошибка: индекс должен быть от 0 до " << size - 1 << "!\n";
-                        cin.clear();
-                        cin.ignore(10000, '\n');
+                if (size != 0) {
+                    int idx;
+                    bool valid = false;
+                    while (!valid) {
+                        cout << "Введите индекс для удаления (0.." << size - 1 << "): ";
+                        if (cin >> idx && idx >= 0 && idx < size) {
+                            valid = true;
+                        } else {
+                            cout << "Ошибка: индекс должен быть от 0 до " << size - 1 << "!\n";
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                        }
                     }
+                    remove_at(arr, size, idx);
+                    cout << "Элемент по индексу " << idx << " удалён.\n";
+                    print_array(arr, size);
+                    break;
                 }
-                remove_at(arr, size, idx);
-                cout << "Элемент по индексу " << idx << " удалён.\n";
-                print_array(arr, size);
-                break;
+                else {
+                    std::cout << "Нельзя удалять элемент пустого массива!"; break;
+                }
             }
 
             case 12: {
@@ -219,35 +224,40 @@ int main() {
             }
 
             case 13: {
-                int idx, k;
-                bool valid_idx = false;
-                while (!valid_idx) {
-                    cout << "Введите начальный индекс (0.." << size - 1 << "): ";
-                    if (cin >> idx && idx >= 0 && idx < size) {
-                        valid_idx = true;
-                    } else {
-                        cout << "Ошибка: индекс должен быть от 0 до " << size - 1 << "!\n";
-                        cin.clear();
-                        cin.ignore(10000, '\n');
+                if (size != 0) {
+                    int idx, k;
+                    bool valid_idx = false;
+                    while (!valid_idx) {
+                        cout << "Введите начальный индекс (0.." << size - 1 << "): ";
+                        if (cin >> idx && idx >= 0 && idx < size) {
+                            valid_idx = true;
+                        } else {
+                            cout << "Ошибка: индекс должен быть от 0 до " << size - 1 << "!\n";
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                        }
                     }
-                }
 
-                bool valid_k = false;
-                while (!valid_k) {
-                    cout << "Введите количество K (1.." << size - idx << "): ";
-                    if (cin >> k && k > 0 && idx + k <= size) {
-                        valid_k = true;
-                    } else {
-                        cout << "Ошибка: K должно быть от 1 до " << size - idx << "!\n";
-                        cin.clear();
-                        cin.ignore(10000, '\n');
+                    bool valid_k = false;
+                    while (!valid_k) {
+                        cout << "Введите количество K (1.." << size - idx << "): ";
+                        if (cin >> k && k > 0 && idx + k <= size) {
+                            valid_k = true;
+                        } else {
+                            cout << "Ошибка: K должно быть от 1 до " << size - idx << "!\n";
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                        }
                     }
-                }
 
-                remove_k(arr, size, idx, k);
-                cout << "Удалено " << k << " элементов начиная с индекса " << idx << ".\n";
-                print_array(arr, size);
-                break;
+                    remove_k(arr, size, idx, k);
+                    cout << "Удалено " << k << " элементов начиная с индекса " << idx << ".\n";
+                    print_array(arr, size);
+                    break;
+                }
+                else {
+                    std::cout << "Нельзя удалять элемент пустого массива!"; break;
+                }
             }
 
             case 14:
@@ -256,21 +266,32 @@ int main() {
                 break;
 
             case 15: {
-                cout << "Введите значение для удаления: ";
-                int value;
-                cin >> value;
-                remove_all_equal(arr, size, value);
-                cout << "Все вхождения " << value << " удалены.\n";
-                print_array(arr, size);
-                break;
+                if (size != 0) {
+                    cout << "Введите значение для удаления: ";
+                    int value;
+                    cin >> value;
+                    remove_all_equal(arr, size, value);
+                    cout << "Все вхождения " << value << " удалены.\n";
+                    print_array(arr, size);
+                    break;
+                }
+                else {
+                    std::cout << "Нельзя удалять элемент пустого массива!"; break;
+                }
+
             }
 
             case 16: {
-                condition cond = choose_condition();
-                remove_by_condition(arr, size, cond);
-                cout << "Элементы, удовлетворяющие условию, удалены.\n";
-                print_array(arr, size);
-                break;
+                if (size != 0) {
+                    condition cond = choose_condition();
+                    remove_by_condition(arr, size, cond);
+                    cout << "Элементы, удовлетворяющие условию, удалены.\n";
+                    print_array(arr, size);
+                    break;
+                }
+        else {
+            std::cout << "Нельзя удалять элемент пустого массива!"; break;
+        }
             }
 
             case 17: {  // Вставка K элементов
