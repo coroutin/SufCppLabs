@@ -10,9 +10,8 @@ int main() {
         std::cin.ignore(10000, '\n');
     }
 
-    int* arr[N];  // массив указателей на строки
+    int* arr[N];
 
-    // Создаём каждую строку отдельно и заполняем её значением i+1
     for (int i = 0; i < N; ++i) {
         int row_length = i + 1;
         arr[i] = new int[row_length];

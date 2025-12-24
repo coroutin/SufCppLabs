@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 int main() {
     int rows, cols;
@@ -7,21 +9,17 @@ int main() {
     std::cin >> rows >> cols;
 
     while (cols < 1 || rows < 1) {
-        std::cout << "Ошибка! Введите размер масссива заново: \n";
+        std::cout << "Ошибка! Введите размер массива заново:\n";
         std::cin >> rows >> cols;
     }
 
     int arr[rows][cols];
 
-    std::cout << "\nВведите элементы массива (" << rows << " x " << cols << "):\n";
+    srand(time(nullptr));
+
     for (int i = 0; i < rows; ++i) {
-        std::cout << "Строка " << (i + 1) << ": ";
         for (int j = 0; j < cols; ++j) {
-            while (!(std::cin >> arr[i][j])) {
-                std::cout << "Ошибка! Введите целое число для позиции [" << i << "][" << j << "]: ";
-                std::cin.clear();
-                std::cin.ignore(10000, '\n');
-            }
+            arr[i][j] = rand() % 20 - 10;
         }
     }
 
@@ -43,8 +41,8 @@ int main() {
     }
 
     int deleted_count = 0;
-
     int i = 0;
+
     while (i < rows) {
         bool contains = false;
         for (int j = 0; j < cols; ++j) {
@@ -55,6 +53,7 @@ int main() {
         }
 
         if (contains) {
+            // сдвиг строк вверх
             for (int k = i; k < rows - 1; ++k) {
                 for (int j = 0; j < cols; ++j) {
                     arr[k][j] = arr[k + 1][j];
@@ -62,16 +61,15 @@ int main() {
             }
             rows--;
             deleted_count++;
-        }
-        else {
+        } else {
             i++;
         }
     }
 
     if (deleted_count == 0) {
-        std::cout << "Сообщение: строки, содержащие элемент " << target << ", не найдены.\n";
-    }
-    else {
+        std::cout << "Сообщение: строки, содержащие элемент "
+                  << target << ", не найдены.\n";
+    } else {
         std::cout << "Удалено строк: " << deleted_count << "\n";
         std::cout << "Массив после удаления (" << rows << " x " << cols << "):\n";
         for (int i = 0; i < rows; ++i) {

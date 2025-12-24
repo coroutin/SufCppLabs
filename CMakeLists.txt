@@ -108,9 +108,7 @@ add_executable(lab09_task13 lab09/task13.cpp)
 add_executable(lab09_task14 lab09/task14.cpp)
 
 #Лабораторная работа 10
-add_executable(lab10_task3 lab10/task3.cpp)
-add_executable(lab10_task6 lab10/task6.cpp)
-add_executable(lab10_task7 lab10/task7.cpp)
+add_executable(lab10_task lab10/task.cpp)
 
 #Лабораторная работа 11
 add_executable(lab11_task1 lab11/task1/task1.cpp)
@@ -121,6 +119,10 @@ add_executable(lab11_task5 lab11/task5/task5.cpp)
 add_executable(lab11_task6 lab11/task6/task6.cpp)
 add_executable(lab11_task7 lab11/task7/task7.cpp)
 add_executable(lab11_task8 lab11/task8/task8.cpp)
+
+#Лабораторная работа 12
+add_executable(lab12_task6 lab12/task6/task6.cpp)
+add_executable(lab12_task10 lab12/task10/task10.cpp)
 
 #Трэш
 add_executable(trash trash.cpp)
