@@ -2,6 +2,7 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include "task.h"
 
 using namespace std;
 
@@ -26,15 +27,80 @@ void to_sentence_case(string& text) {
     }
 }
 
+char* as_sentence_case(const char* txt) {
+    static char res[5000];
+    int n = strlen(txt);
+    for (int i = 0; i < n; i++)
+        res[i] = txt[i];
+    if (n > 0 && isalpha(res[0]))
+        res[0] = toupper(res[0]);
+    for (int i = 0; i < n - 2; i++) {
+        if ((res[i] == '.' || res[i] == '!' || res[i] == '?') && res[i+1] == ' ' && isalpha(res[i+2]))
+            res[i+2] = toupper(res[i+2]);
+    }
+    res[n] = '\0';
+    return res;
+}
+
 string to_lower_case(const string& text) {
     string result = text;
     transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }
 
+char* to_lower_case(const char* text)
+{
+    if (text == nullptr)
+    {
+        char* empty = new char[1]{'\0'};
+        return empty;
+    }
+
+    size_t len = std::strlen(text);
+    char* result = new char[len + 1];
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        unsigned char ch = static_cast<unsigned char>(text[i]);
+
+        if (std::isalpha(ch))
+            result[i] = static_cast<char>(std::tolower(ch));
+        else
+            result[i] = text[i];
+    }
+
+    result[len] = '\0';
+    return result;
+}
+
 string to_upper_case(const string& text) {
     string result = text;
     transform(result.begin(), result.end(), result.begin(), ::toupper);
+    return result;
+}
+
+char* to_upper_case(const char* text)
+{
+    if (text == nullptr)
+    {
+        char* empty = new char[1]{'\0'};
+        return empty;
+    }
+
+    size_t len = std::strlen(text);
+    char* result = new char[len + 1];
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        unsigned char ch = static_cast<unsigned char>(text[i]);
+
+        if (std::isalpha(ch))
+            result[i] = static_cast<char>(std::toupper(ch));
+        else
+            result[i] = text[i];
+    }
+
+    result[len] = '\0';
     return result;
 }
 
@@ -57,12 +123,79 @@ string to_title_case(const string& text) {
     return result;
 }
 
+char* to_title_case(const char* text)
+{
+    if (text == nullptr)
+    {
+        char* empty = new char[1]{'\0'};
+        return empty;
+    }
+
+    size_t len = std::strlen(text);
+    char* result = new char[len + 1];
+
+    bool new_word = true;
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        unsigned char ch = static_cast<unsigned char>(text[i]);
+
+        if (std::isalpha(ch))
+        {
+            if (new_word)
+            {
+                result[i] = static_cast<char>(std::toupper(ch));
+                new_word = false;
+            }
+            else
+            {
+                result[i] = static_cast<char>(std::tolower(ch));
+            }
+        }
+        else
+        {
+            result[i] = text[i];
+            new_word = (text[i] == ' ');
+        }
+    }
+
+    result[len] = '\0';
+    return result;
+}
+
 string to_toggle_case(const string& text) {
     string result = text;
     for (size_t i = 0; i < result.length(); ++i) {
         if (isupper(result[i])) result[i] = tolower(result[i]);
         else if (islower(result[i])) result[i] = toupper(result[i]);
     }
+    return result;
+}
+
+char* to_toggle_case(const char* text)
+{
+    if (text == nullptr)
+    {
+        char* empty = new char[1]{'\0'};
+        return empty;
+    }
+
+    size_t len = std::strlen(text);
+    char* result = new char[len + 1];
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        unsigned char ch = static_cast<unsigned char>(text[i]);
+
+        if (std::isupper(ch))
+            result[i] = static_cast<char>(std::tolower(ch));
+        else if (std::islower(ch))
+            result[i] = static_cast<char>(std::toupper(ch));
+        else
+            result[i] = text[i];
+    }
+
+    result[len] = '\0';
     return result;
 }
 
@@ -82,8 +215,30 @@ string trim(const string& text) {
     return text.substr(start, end - start + 1);
 }
 
-bool is_punctuation(char c) {
-    return c == '.' || c == ',' || c == '!' || c == '?' || c == ':' || c == ';';
+char* trim(const char* text)
+{
+    if (!text)
+    {
+        char* empty = new char[1]{ '\0' };
+        return empty;
+    }
+
+    const char* start = text;
+    while (*start && std::isspace(static_cast<unsigned char>(*start)))
+        ++start;
+
+    const char* end = text + std::strlen(text) - 1;
+    while (end >= start && std::isspace(static_cast<unsigned char>(*end)))
+        --end;
+
+    size_t len = (end >= start) ? (end - start + 1) : 0;
+    char* result = new char[len + 1];
+
+    if (len > 0)
+        std::strncpy(result, start, len);
+
+    result[len] = '\0';
+    return result;
 }
 
 string spaces_around_punctuation(const string& text) {
@@ -121,49 +276,33 @@ string spaces_around_punctuation(const string& text) {
     return result;
 }
 
-int main() {
-    string original_text;
-    string prepared_text;
-
-    cout << "Введите текст: ";
-    getline(cin, original_text);
-
-    prepared_text = spaces_around_punctuation(trim(original_text));
-
-    while (true) {
-        cout << "\nВыберите способ изменения регистра:\n";
-        cout << "1 - Как в предложениях\n";
-        cout << "2 - все строчные\n";
-        cout << "3 - ВСЕ ПРОПИСНЫЕ\n";
-        cout << "4 - Начинать С Прописных\n";
-        cout << "5 - иЗМЕНИТЬ РЕГИСТР\n";
-        cout << "0 - Выход\n";
-        cout << "Ваш выбор: ";
-
-        int choice;
-        cin >> choice;
-        cin.ignore(10000, '\n');
-
-        if (choice == 0) {
-            cout << "Выход из программы.\n";
-            break;
-        }
-
-        string result = prepared_text;
-
-        switch (choice) {
-            case 1: to_sentence_case(result); break;
-            case 2: result = to_lower_case(result); break;
-            case 3: result = to_upper_case(result); break;
-            case 4: result = to_title_case(result); break;
-            case 5: result = to_toggle_case(result); break;
-            default:
-                cout << "Неверный выбор!\n";
-                continue;
-        }
-
-        cout << "\nРезультат:\n" << result << endl;
+char* spaces_around_punctuation(const char* text){
+    if (!text){
+        char* empty = new char[1]{ '\0' };
+        return empty;
     }
 
-    return 0;
+    size_t len = std::strlen(text);
+    char* result = new char[len * 2 + 1];
+    size_t pos = 0;
+
+    for (size_t i = 0; i < len; ++i){
+        char c = text[i];
+
+        if (is_punctuation(c)){
+            if (pos > 0 && result[pos - 1] == ' ')
+                pos--;
+
+            result[pos++] = c;
+
+            if (i + 1 < len && text[i + 1] != ' ')
+                result[pos++] = ' ';
+        }
+        else{
+            result[pos++] = c;
+        }
+    }
+
+    result[pos] = '\0';
+    return result;
 }

@@ -108,7 +108,7 @@ add_executable(lab09_task13 lab09/task13.cpp)
 add_executable(lab09_task14 lab09/task14.cpp)
 
 #Лабораторная работа 10
-add_executable(lab10_task lab10/task.cpp)
+add_executable(lab10_task lab10/main.cpp lab10/task.cpp lab10/task.h)
 
 #Лабораторная работа 11
 add_executable(lab11_task1 lab11/task1/task1.cpp)
