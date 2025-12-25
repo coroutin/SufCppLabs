@@ -1,50 +1,59 @@
 #include <iostream>
+#include <string>
+#include <cstring>
 #include "task.h"
-using namespace std;
 
 int main() {
-    string original_text;
-    string prepared_text;
+    std::string input;
+    std::cout << "Введите текст: ";
+    std::getline(std::cin, input);
 
-    cout << "Введите текст: ";
-    getline(cin, original_text);
+    char* text_c = new char[input.size() + 1];
+    std::strcpy(text_c, input.c_str());
 
-    prepared_text = spaces_around_punctuation(trim(original_text));
+    char* prepared_c = spaces_around_punctuation(text_c);
+    std::string prepared_s = spaces_around_punctuation(input);
 
-    while (true) {
-        cout << "\nВыберите способ изменения регистра:\n";
-        cout << "1 - Как в предложениях\n";
-        cout << "2 - все строчные\n";
-        cout << "3 - ВСЕ ПРОПИСНЫЕ\n";
-        cout << "4 - Начинать С Прописных\n";
-        cout << "5 - иЗМЕНИТЬ РЕГИСТР\n";
-        cout << "0 - Выход\n";
-        cout << "Ваш выбор: ";
+    int choice;
+    do {
+        std::cout <<
+        "\n1 - Как в предложениях\n"
+        "2 - все строчные\n"
+        "3 - ВСЕ ПРОПИСНЫЕ\n"
+        "4 - Начинать С Прописных\n"
+        "5 - иЗМЕНИТЬ РЕГИСТР\n"
+        "0 - Выход\nВаш выбор: ";
 
-        int choice;
-        cin >> choice;
-        cin.ignore(10000, '\n');
+        std::cin >> choice;
+        std::cin.ignore(10000, '\n');
 
-        if (choice == 0) {
-            cout << "Выход из программы.\n";
-            break;
-        }
+        if (choice == 0) break;
 
-        string result = prepared_text;
+        char* result_c = nullptr;
+        std::string result_s = prepared_s;
 
         switch (choice) {
-            case 1: to_sentence_case(result); break;
-            case 2: result = to_lower_case(result); break;
-            case 3: result = to_upper_case(result); break;
-            case 4: result = to_title_case(result); break;
-            case 5: result = to_toggle_case(result); break;
+            case 1: result_c = to_sentence_case(prepared_c);
+                result_s = to_sentence_case(result_s); break;
+            case 2: result_c = to_lower_case(prepared_c);
+                result_s = to_lower_case(result_s); break;
+            case 3: result_c = to_upper_case(prepared_c);
+                result_s = to_upper_case(result_s); break;
+            case 4: result_c = to_title_case(prepared_c);
+                result_s = to_title_case(result_s); break;
+            case 5: result_c = to_toggle_case(prepared_c);
+                result_s = to_toggle_case(result_s); break;
             default:
-                cout << "Неверный выбор!\n";
+                std::cout << "Неверный выбор\n";
                 continue;
         }
 
-        cout << "\nРезультат:\n" << result << endl;
-    }
+        std::cout << "\nchar*: " << result_c << "\nstring: " << result_s << "\n";
+        delete[] result_c;
 
+    } while (true);
+
+    delete[] text_c;
+    delete[] prepared_c;
     return 0;
 }
