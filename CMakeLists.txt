@@ -99,7 +99,15 @@ add_executable(lab07_task13 lab07/task13.cpp)
 add_executable(lab07_task14 lab07/task14.cpp)
 
 #Лабораторная работа 8
-add_executable(lab08_task lab08/main.cpp lab08/array_funcs.cpp)
+add_executable(lab08_task1-2 lab08/task1-2.cpp)
+add_executable(lab08_task3-4 lab08/task3-4.cpp)
+add_executable(lab08_task5-6 lab08/task5-6.cpp)
+add_executable(lab08_task7-8 lab08/task7-8.cpp)
+add_executable(lab08_task9-10 lab08/task9-10.cpp)
+add_executable(lab08_task11 lab08/task11.cpp)
+add_executable(lab08_task12 lab08/task12.cpp)
+add_executable(lab08_task13 lab08/task13.cpp)
+add_executable(lab08_task lab08/task_submit/main.cpp lab08/task_submit/array_funcs.cpp)
 
 #Лабораторная работа 9
 add_executable(lab09_task1 lab09/task1.cpp)
