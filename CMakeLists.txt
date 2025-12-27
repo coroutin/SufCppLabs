@@ -111,14 +111,14 @@ add_executable(lab09_task14 lab09/task14.cpp)
 add_executable(lab10_task lab10/main.cpp lab10/task.cpp lab10/task.h)
 
 #Лабораторная работа 11
-add_executable(lab11_task1 lab11/task1/task1.cpp)
-add_executable(lab11_task2 lab11/task2/task2.cpp)
-add_executable(lab11_task3 lab11/task3/task3.cpp)
-add_executable(lab11_task4 lab11/task4/task4.cpp)
-add_executable(lab11_task5 lab11/task5/task5.cpp)
-add_executable(lab11_task6 lab11/task6/task6.cpp)
-add_executable(lab11_task7 lab11/task7/task7.cpp)
-add_executable(lab11_task8 lab11/task8/task8.cpp)
+add_executable(lab11_task1 lab11/task1.cpp)
+add_executable(lab11_task2 lab11/task2.cpp)
+add_executable(lab11_task3 lab11/task3.cpp)
+add_executable(lab11_task4 lab11/task4.cpp)
+add_executable(lab11_task5 lab11/task5.cpp)
+add_executable(lab11_task6 lab11/task6.cpp)
+add_executable(lab11_task7 lab11/task7.cpp)
+add_executable(lab11_task8 lab11/task8.cpp)
 
 #Лабораторная работа 12
 add_executable(lab12_task1 lab12/contest/task1.cpp)
