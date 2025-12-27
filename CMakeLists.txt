@@ -108,7 +108,23 @@ add_executable(lab09_task13 lab09/task13.cpp)
 add_executable(lab09_task14 lab09/task14.cpp)
 
 #Лабораторная работа 10
-add_executable(lab10_task lab10/main.cpp lab10/task.cpp lab10/task.h)
+add_executable(lab10_task1 lab10/task1.cpp)
+add_executable(lab10_task2 lab10/task2.cpp)
+add_executable(lab10_task3_1 lab10/task3_1.cpp)
+add_executable(lab10_task3_2 lab10/task3_2.cpp)
+add_executable(lab10_task3_3 lab10/task3_3.cpp)
+add_executable(lab10_task3_4 lab10/task3_4.cpp)
+add_executable(lab10_task3_5 lab10/task3_5.cpp)
+add_executable(lab10_task4 lab10/task4.cpp)
+add_executable(lab10_task5 lab10/task5.cpp)
+add_executable(lab10_task6 lab10/task6.cpp)
+add_executable(lab10_task7_1 lab10/task7_1.cpp)
+add_executable(lab10_task7_2 lab10/task7_2.cpp)
+add_executable(lab10_task8_1 lab10/task8_1.cpp)
+add_executable(lab10_task8_2 lab10/task8_2.cpp)
+add_executable(lab10_task9 lab10/task9.cpp)
+add_executable(lab10_task10 lab10/task10.cpp)
+add_executable(lab10_task_submit lab10/task_submit/main.cpp lab10/task_submit/task.cpp lab10/task_submit/task.h)
 
 #Лабораторная работа 11
 add_executable(lab11_task1 lab11/task1.cpp)
@@ -136,6 +152,14 @@ add_executable(lab12_task12 lab12/contest/task12.cpp)
 add_executable(lab12_task13 lab12/contest/task13.cpp)
 add_executable(lab12_task6_submit lab12/task6/task6.cpp)
 add_executable(lab12_task10_submit lab12/task10/task10.cpp)
+
+#Лабораторная работа 13
+add_executable(lab13_task1 lab13/task1.cpp)
+add_executable(lab13_task2 lab13/task2.cpp)
+add_executable(lab13_task3 lab13/task3.cpp)
+add_executable(lab13_task4 lab13/task4.cpp)
+add_executable(lab13_task5 lab13/task5.cpp)
+add_executable(lab13_task6 lab13/task6.cpp)
 
 #Трэш
 add_executable(trash trash.cpp)

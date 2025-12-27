@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include "task.h"
+#include "../task.h"
 
 int main() {
     std::string input;
