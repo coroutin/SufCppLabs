@@ -121,8 +121,21 @@ add_executable(lab11_task7 lab11/task7/task7.cpp)
 add_executable(lab11_task8 lab11/task8/task8.cpp)
 
 #Лабораторная работа 12
-add_executable(lab12_task6 lab12/task6/task6.cpp)
-add_executable(lab12_task10 lab12/task10/task10.cpp)
+add_executable(lab12_task1 lab12/contest/task1.cpp)
+add_executable(lab12_task2 lab12/contest/task2.cpp)
+add_executable(lab12_task3 lab12/contest/task3.cpp)
+add_executable(lab12_task4 lab12/contest/task4.cpp)
+add_executable(lab12_task5 lab12/contest/task5.cpp)
+add_executable(lab12_task6 lab12/contest/task6.cpp)
+add_executable(lab12_task7 lab12/contest/task7.cpp)
+add_executable(lab12_task8 lab12/contest/task8.cpp)
+add_executable(lab12_task9 lab12/contest/task9.cpp)
+add_executable(lab12_task10 lab12/contest/task10.cpp)
+add_executable(lab12_task11 lab12/contest/task11.cpp)
+add_executable(lab12_task12 lab12/contest/task12.cpp)
+add_executable(lab12_task13 lab12/contest/task13.cpp)
+add_executable(lab12_task6_submit lab12/task6/task6.cpp)
+add_executable(lab12_task10_submit lab12/task10/task10.cpp)
 
 #Трэш
 add_executable(trash trash.cpp)
