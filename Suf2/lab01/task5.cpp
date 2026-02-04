@@ -14,3 +14,14 @@ struct Employee {
     std::string phone = "";
     char gender;
 };
+
+int find_element(Employee* employee, size_t size,
+                 bool(*condition)(Employee))
+{
+    for (size_t i = 0; i < size; ++i) {
+        if (condition(employee[i])) {
+            return static_cast<int>(i);
+        }
+    }
+    return -1;
+}
