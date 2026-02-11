@@ -194,7 +194,7 @@ add_executable(lab13_task6 Suf1/lab13/task6.cpp)
 
 
 #Лабораторная работа 1
-
+add_executable(lab01_task_submit Suf2/lab01/task_submit/main.cpp Suf2/lab01/task_submit/Employee.cpp Suf2/lab01/task_submit/Employee.h)
 
 #Трэш
 add_executable(trash trash.cpp)
