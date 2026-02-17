@@ -1,11 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 #include "Employee.h"
 
 int main() {
     std::vector<Employee> vector_employee;
     int choice;
+
+
+        read_from_text(vector_employee);
+        std::cout << "Данные загружены из employees.txt\n";
 
     do {
         std::cout << "\n=== МЕНЮ ===\n"
@@ -50,9 +55,10 @@ int main() {
             }
 
             case 4: {
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Введите запрос для поиска по ФИО: ";
                 std::string query;
-                std::cin >> query;
+                std::getline(std::cin, query);
                 std::vector<Employee> result = search_by_NSP(vector_employee, query);
                 if (result.empty()) {
                     std::cout << "Ничего не найдено.\n";
@@ -74,7 +80,7 @@ int main() {
             }
 
             case 6: {
-                if (get_oldest(vector_employee) == nullptr) std::cout << "Сотрудников-мужчин нет.";
+                if (get_oldest(vector_employee) == nullptr) std::cout << "\nСотрудников-мужчин нет.";
                 else {
                     print_employee(*get_oldest(vector_employee));
                 }
@@ -82,7 +88,7 @@ int main() {
             }
 
             case 7: {
-                if (get_male_pensioners(vector_employee).empty()) std::cout << "Сотрудников-мужчин-пенсионеров нет.";
+                if (get_male_pensioners(vector_employee).empty()) std::cout << "\nСотрудников-мужчин-пенсионеров нет.";
                 else {
                     std::vector<Employee> result = get_male_pensioners(vector_employee);
                     std::cout << "Найдено " << result.size() << " сотрудник(ов):\n";

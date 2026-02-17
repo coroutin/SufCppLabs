@@ -169,16 +169,12 @@ std::vector<Employee> get_males(const std::vector<Employee>& vector_employee) {
 }
 
 Employee* get_oldest(std::vector<Employee>& vector_employee) {
-    if (vector_employee.empty()) return nullptr;
+    Employee* result = nullptr;
 
-    Employee* oldest = &vector_employee[0];
-
-    for (auto& employee : vector_employee) {
-        if (employee.gender == "М" && employee.age > oldest->age) {
-            oldest = &employee;
-        }
+    for (auto employee :vector_employee) {
+        if (condition(employee, result)) result = &employee;
     }
-    return oldest;
+    return result;
 }
 
 std::vector<Employee> get_male_pensioners(const std::vector<Employee> &vector_employee) {

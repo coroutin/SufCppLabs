@@ -14,12 +14,20 @@ struct Employee {
     std::string gender;
 };
 
+std::ostream& operator<<(std::ostream& out, const Employee& employee);
+std::istream& operator>>(std::istream& in, Employee& emp);
+
 inline bool contains(const std::string& text, const std::string& part) {
     return text.find(part) != std::string::npos;
 }
 
 inline bool is_valid_gender(const std::string& gender) {
     return gender == "М" || gender == "Ж";
+}
+
+inline bool condition(Employee& employee, Employee* oldest) {
+    if (employee.gender == "М" && employee.age >= oldest->age) return true;
+    return false;
 }
 
 bool is_valid_phone(const std::string& phone);
