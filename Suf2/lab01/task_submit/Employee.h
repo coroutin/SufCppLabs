@@ -8,7 +8,7 @@ struct Employee {
     std::string surname = "";
     std::string name = "";
     std::string patronymic = "";
-    unsigned int age;
+    mutable unsigned int age;
     std::string passport = "";
     std::string phone = "";
     std::string gender;
@@ -25,11 +25,6 @@ inline bool is_valid_gender(const std::string& gender) {
     return gender == "М" || gender == "Ж";
 }
 
-inline bool condition(Employee& employee, Employee* oldest) {
-    if (employee.gender == "М" && employee.age >= oldest->age) return true;
-    return false;
-}
-
 bool is_valid_phone(const std::string& phone);
 bool is_valid_passport(const std::string& passport);
 std::string input_phone();
@@ -37,7 +32,7 @@ std::string input_passport();
 std::string input_gender();
 void print_employee(const Employee& employee);
 Employee input_employee(unsigned int id);
-void input_employee(std::vector<Employee>& vector_employee);
+std::vector<Employee> input_employee(std::vector<Employee>& vector_employee);
 void print_employee(const std::vector<Employee>& vector_employee);
 Employee* find_by_id(std::vector<Employee>& vector_employee, unsigned int id);
 std::vector<Employee> search_by_NSP(const std::vector<Employee>& vector_employee, const std::string& query);

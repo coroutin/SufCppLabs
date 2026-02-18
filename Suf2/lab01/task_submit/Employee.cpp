@@ -4,7 +4,7 @@
 #include <limits>
 #include <fstream>
 
-// Валидность телефона
+
 bool is_valid_phone(const std::string& phone) {
     if (phone.length() != 11 && phone.length() != 12) return false;
 
@@ -21,7 +21,7 @@ bool is_valid_phone(const std::string& phone) {
 
     return true;
 }
-// Валидность паспорта
+
 bool is_valid_passport(const std::string& passport) {
     if (passport.length() != 11) return false;
     for (int i = 0; i < 4; ++i)
@@ -119,18 +119,22 @@ Employee input_employee(unsigned int id) {
     return employee;
 }
 
-void input_employee(std::vector<Employee>& vector_employee) {
+std::vector<Employee> input_employee(std::vector<Employee>& vector_employee) {
+
+    std::vector<Employee> employees;
+
     int n;
-    std::cout << "Количество сотрудников (>=8): ";
+    std::cout << "Количество сотрудников: ";
     std::cin >> n;
 
     static unsigned int next_id = 1;
 
     for (int i = 0; i < n; ++i) {
         std::cout << "\nСотрудник №" << i + 1 << "\n";
-        vector_employee.push_back(input_employee(next_id++));
+        employees.push_back(input_employee(next_id++));
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return vector_employee = employees;
 }
 
 void print_employee(const Employee& employee) {
@@ -169,12 +173,16 @@ std::vector<Employee> get_males(const std::vector<Employee>& vector_employee) {
 }
 
 Employee* get_oldest(std::vector<Employee>& vector_employee) {
-    Employee* result = nullptr;
+    if (vector_employee.empty()) return nullptr;
 
-    for (auto employee :vector_employee) {
-        if (condition(employee, result)) result = &employee;
+    Employee* oldest = nullptr;
+
+    for (auto& employee : vector_employee) {
+        if (!oldest || (employee.gender == "М" && employee.age > oldest->age)) {
+            oldest = &employee;
+        }
     }
-    return result;
+    return oldest;
 }
 
 std::vector<Employee> get_male_pensioners(const std::vector<Employee> &vector_employee) {
