@@ -1,45 +1,93 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
+#include <string>
+
+
+//===========
+//  СТРУКТУРЫ
+//===========
+
+//ФИО сотрудника
+
+struct Fullname {
+    std::string surname;
+    std::string name;
+    std::string patronymic;
+};
+
+std::ostream& operator<<(std::ostream& out, const Fullname& fullname);
+
+// Сотрудник
 
 struct Employee {
     unsigned int id;
-    std::string surname = "";
-    std::string name = "";
-    std::string patronymic = "";
-    mutable unsigned int age;
-    std::string passport = "";
-    std::string phone = "";
+    Fullname fullname;
+    unsigned int age;
+    std::string passport;
+    std::string phone;
     std::string gender;
 };
 
-std::ostream& operator<<(std::ostream& out, const Employee& employee);
-std::istream& operator>>(std::istream& in, Employee& emp);
+//Массив сотрудников
 
-inline bool contains(const std::string& text, const std::string& part) {
-    return text.find(part) != std::string::npos;
-}
+struct EmployeeArray {
+    Employee* data = nullptr;
+    size_t size = 0;
 
+    // Деструктор (Пусть гиблые С-массивы хоть чуть-чуть будут похожи на std::vector)
+    ~EmployeeArray() { clear(); }
+
+    // Метод очистки
+    void clear() {
+        delete[] data;
+        data = nullptr;
+        size = 0;
+    }
+};
+
+
+//==================
+//  ПСЕВДОНИМЫ ТИПОВ
+//==================
+
+using Condition = bool(*)(const Employee&);
+using Comparator = bool(*)(const Employee&, const Employee&);
+
+
+//==============
+//  ГЕНЕРАТОР ID
+//==============
+
+unsigned int get_next_id();
+
+
+//=================
+//  ВАЛИДАЦИЯ ПОЛЕЙ
+//=================
+
+bool is_valid_phone(const std::string& phone);
+bool is_valid_passport(const std::string& passport);
 inline bool is_valid_gender(const std::string& gender) {
     return gender == "М" || gender == "Ж";
 }
 
-bool is_valid_phone(const std::string& phone);
-bool is_valid_passport(const std::string& passport);
+
+//========================
+//  ВВОД ПОЛЕЙ С ПРОВЕРКОЙ
+//========================
+
 std::string input_phone();
 std::string input_passport();
 std::string input_gender();
+
+
+//=====================================
+//  ОПЕРАТОРЫ И ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+//=====================================
+
+std::ostream& operator<<(std::ostream& out, const Employee& employee);
+std::istream& operator>>(std::istream& in,  Employee& employee);
+
 void print_employee(const Employee& employee);
 Employee input_employee(unsigned int id);
-std::vector<Employee> input_employee(std::vector<Employee>& vector_employee);
-void print_employee(const std::vector<Employee>& vector_employee);
-Employee* find_by_id(std::vector<Employee>& vector_employee, unsigned int id);
-std::vector<Employee> search_by_NSP(const std::vector<Employee>& vector_employee, const std::string& query);
-std::vector<Employee> get_males(const std::vector<Employee>& vector_employee);
-Employee* get_oldest(std::vector<Employee>& vector_employee);
-std::vector<Employee> get_male_pensioners(const std::vector<Employee>& vector_employee);
-void write_to_text(const std::vector<Employee>& vector_employee);
-void read_from_text(std::vector<Employee>& vector_employee);
-void write_to_binary(const std::vector<Employee>& vector_employee);
-void read_from_binary(std::vector<Employee>& vector_employee);
