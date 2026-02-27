@@ -34,11 +34,9 @@ struct Employee {
 struct EmployeeArray {
     Employee* data = nullptr;
     size_t size = 0;
-
-    // Деструктор (Пусть гиблые С-массивы хоть чуть-чуть будут похожи на std::vector)
+    
     ~EmployeeArray() { clear(); }
 
-    // Метод очистки
     void clear() {
         delete[] data;
         data = nullptr;

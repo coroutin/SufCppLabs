@@ -35,8 +35,8 @@ size_t get_oldest_male(const std::vector<Employee>& employees,
 //  ФАЙЛОВЫЙ ВВОД/ВЫВОД
 //=====================
 
-void write_to_text  (const std::vector<Employee>& employees);
-void read_from_text (std::vector<Employee>& employees);
+void write_to_txt  (const std::vector<Employee>& employees);
+void read_from_txt (std::vector<Employee>& employees);
 void write_to_binary(const std::vector<Employee>& employees);
 void read_from_binary(std::vector<Employee>& employees);
 

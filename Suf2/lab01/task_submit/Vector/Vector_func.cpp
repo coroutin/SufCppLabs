@@ -97,7 +97,7 @@ static std::string read_str(std::ifstream& file) {
 //  ФАЙЛОВЫЙ ВВОД/ВЫВОД
 //=====================
 
-void write_to_text(const std::vector<Employee>& employees) {
+void write_to_txt(const std::vector<Employee>& employees) {
     std::ofstream file("employees.txt");
 
     file << employees.size() << "\n";
@@ -108,7 +108,7 @@ void write_to_text(const std::vector<Employee>& employees) {
     std::cout << "Данные записаны в employees.txt\n";
 }
 
-void read_from_text(std::vector<Employee>& employees) {
+void read_from_txt(std::vector<Employee>& employees) {
     std::ifstream file("employees.txt");
 
     size_t count = 0;

@@ -4,40 +4,66 @@
 #include <limits>
 
 #include "Employee.h"
+#include "Employees_predicates.h"
 #include "Vector/Vector_func.h"
 #include "Array/Array_func.h"
 
-static int read_choice() {
-    int choice;
-    std::cin >> choice;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    return choice;
-}
+enum class MainMenu {
+    ARRAY = 1,
+    VECTOR = 2,
+    EXIT = 0
+};
+
+enum class SubMenu {
+    ADD =1,
+    ADD_MANY = 2,
+    PRINT = 3,
+    SEARCH = 4,
+    MALES = 5,
+    MALES_PENSIONERS = 6,
+    OLDEST = 7,
+    WRITE_TO_TXT = 8,
+    READ_FROM_TXT = 9,
+    WRITE_TO_BIN = 10,
+    READ_FROM_BIN = 11,
+    BACK = 0
+};
+
+using enum MainMenu;
+using enum SubMenu;
 
 static void run_array_menu() {
     Employee* employees = nullptr;
     size_t size = 0;
-    int choice;
+
+    employees = read_from_txt(size);
+
+    SubMenu choice;
 
     do {
-        std::cout << "\n=== МЕНЮ: C-МАССИВ ===\n"
-                  << "1  - Добавить сотрудника\n"
-                  << "2  - Добавить сотрудников\n"
-                  << "3  - Вывести всех сотрудников\n"
-                  << "4  - Поиск по ФИО\n"
-                  << "5  - Вывести мужчин\n"
-                  << "6  - Вывести мужчин-пенсионеров\n"
-                  << "7  - Самый старший мужчина\n"
-                  << "8  - Записать в текстовый файл\n"
-                  << "9  - Прочитать из текстового файла\n"
-                  << "10 - Записать в бинарный файл\n"
-                  << "11 - Прочитать из бинарного файла\n"
-                  << "0  - Назад\n"
+        std::cout << "\n=== МЕНЮ: C-Array ===\n"
+                  << "1 - Добавить сотрудника\n"
+                  << "2 - Добавить группу\n"
+                  << "3 - Вывести всех\n"
+                  << "4 - Поиск по ФИО\n"
+                  << "5 - Вывести мужчин\n"
+                  << "6 - Вывести мужчин-пенсионеров\n"
+                  << "7 - Самый старший мужчина\n"
+                  << "8 - Сохранить в TXT\n"
+                  << "9 - Загрузить из TXT\n"
+                  << "10 - Сохранить в BIN\n"
+                  << "11 - Загрузить из BIN\n"
+                  << "12 - Назад\n"
                   << "Ваш выбор: ";
-        choice = read_choice();
+
+        int input;
+        std::cin >> input;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        choice = static_cast<SubMenu>(input);
 
         switch (choice) {
-            case 1: {
+            case ADD: {
                 Employee* new_employees = new Employee[size + 1];
 
                 for (size_t i = 0; i < size; ++i) {
@@ -54,7 +80,7 @@ static void run_array_menu() {
                 print_employee(employees[size - 1]);
                 break;
             }
-            case 2: {
+            case ADD_MANY: {
                 std::cout << "Количество сотрудников: ";
                 std::cin >> size;
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -63,12 +89,12 @@ static void run_array_menu() {
                 input_employees(employees, size);
                 break;
             }
-            case 3: {
+            case PRINT: {
                 if (!employees || size == 0) std::cout << "Список пуст\n";
                 else print_employees(employees, size);
                 break;
             }
-            case 4: {
+            case SEARCH: {
                 std::cout << "Запрос для поиска по ФИО: ";
                 std::string query;
                 std::getline(std::cin, query);
@@ -80,88 +106,95 @@ static void run_array_menu() {
                 }
                 break;
             }
-            case 5: {
+            case MALES: {
                 if (!employees) { std::cout << "Список пуст\n"; break; }
                 get_males(employees, size);
                 break;
             }
-            case 6: {
+            case MALES_PENSIONERS: {
                 if (!employees) { std::cout << "Список пуст\n"; break; }
                 get_male_pensioners(employees, size);
                 break;
             }
-            case 7: {
+            case OLDEST: {
                 if (!employees) { std::cout << "Список пуст\n"; break; }
                 get_oldest_males(employees, size);
                 break;
             }
-            case 8: {
+            case WRITE_TO_TXT: {
                 if (!employees) { std::cout << "Список пуст\n"; break; }
                 write_to_txt(employees, size);
                 break;
             }
-            case 9: {
+            case READ_FROM_TXT: {
                 delete[] employees;
                 employees = read_from_txt(size);
                 break;
             }
-            case 10: {
+            case WRITE_TO_BIN: {
                 if (!employees) { std::cout << "Список пуст\n"; break; }
                 write_to_bin(employees, size);
                 break;
             }
-            case 11: {
+            case READ_FROM_BIN: {
                 delete[] employees;
                 employees = read_from_bin(size);
                 break;
             }
-            case 0: break;
+            case BACK: break;
+
             default: std::cout << "Неверный выбор\n";
         }
-    } while (choice != 0);
+    }
+    while (choice != BACK);
 
     delete[] employees;
 }
 
 static void run_vector_menu() {
     std::vector<Employee> employees;
-    int choice;
+    SubMenu choice;
+
+    read_from_txt(employees);
 
     do {
         std::cout << "\n=== МЕНЮ: std::vector ===\n"
-                  << "1  - Добавить сотрудника\n"
-                  << "2  - Добавить сотрудников\n"
-                  << "3  - Вывести всех сотрудников\n"
-                  << "4  - Поиск по ФИО\n"
-                  << "5  - Вывести мужчин\n"
-                  << "6  - Самый старший мужчина\n"
-                  << "7  - Вывести мужчин-пенсионеров\n"
-                  << "8  - Записать в текстовый файл\n"
-                  << "9  - Прочитать из текстового файла\n"
-                  << "10 - Записать в бинарный файл\n"
-                  << "11 - Прочитать из бинарного файла\n"
-                  << "0  - Назад\n"
+                  << "1 - Добавить сотрудника\n"
+                  << "2 - Добавить группу\n"
+                  << "3 - Вывести всех\n"
+                  << "4 - Поиск по ФИО\n"
+                  << "5 - Вывести мужчин\n"
+                  << "6 - Вывести мужчин-пенсионеров\n"
+                  << "7 - Самый старший мужчина\n"
+                  << "8 - Сохранить в TXT\n"
+                  << "9 - Загрузить из TXT\n"
+                  << "10 - Сохранить в BIN\n"
+                  << "11 - Загрузить из BIN\n"
+                  << "12 - Назад\n"
                   << "Ваш выбор: ";
-        choice = read_choice();
+        int inp;
+        std::cin >> inp;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        choice = static_cast<SubMenu>(inp);
 
         switch (choice) {
-            case 1: {
+            case ADD: {
                 Employee e = input_employee(get_next_id());
                 employees.push_back(e);
                 std::cout << "Сотрудник добавлен\n";
                 print_employee(e);
                 break;
             }
-            case 2: {
+            case ADD_MANY: {
                 input_employees(employees);
                 break;
             }
-            case 3: {
+            case PRINT: {
                 if (employees.empty()) std::cout << "Список пуст\n";
                 else print_employees(employees);
                 break;
             }
-            case 4: {
+            case SEARCH: {
                 std::cout << "Запрос для поиска по ФИО: ";
                 std::string query;
                 std::getline(std::cin, query);
@@ -173,7 +206,7 @@ static void run_vector_menu() {
                 }
                 break;
             }
-            case 5: {
+            case MALES: {
                 auto males = get_males(employees);
                 if (males.empty()) std::cout << "Сотрудников-мужчин нет\n";
                 else {
@@ -182,7 +215,7 @@ static void run_vector_menu() {
                 }
                 break;
             }
-            case 6: {
+            case OLDEST: {
                 if (get_males(employees).empty())
                     std::cout << "Сотрудников-мужчин нет\n";
                 else {
@@ -192,7 +225,7 @@ static void run_vector_menu() {
                 }
                 break;
             }
-            case 7: {
+            case MALES_PENSIONERS: {
                 auto pensioners = get_male_pensioners(employees);
                 if (pensioners.empty()) std::cout << "Мужчин-пенсионеров нет\n";
                 else {
@@ -201,33 +234,40 @@ static void run_vector_menu() {
                 }
                 break;
             }
-            case 8:  write_to_text(employees);    break;
-            case 9:  read_from_text(employees);   break;
-            case 10: write_to_binary(employees);  break;
-            case 11: read_from_binary(employees); break;
-            case 0: break;
+            case WRITE_TO_TXT:  write_to_txt(employees);    break;
+            case READ_FROM_TXT:  read_from_txt(employees);   break;
+            case WRITE_TO_BIN: write_to_binary(employees);  break;
+            case READ_FROM_BIN: read_from_binary(employees); break;
+            case BACK: break;
             default: std::cout << "Неверный выбор\n";
         }
-    } while (choice != 0);
+    }
+    while (choice != BACK);
 }
 
 int main() {
-    int choice;
+    MainMenu choice;
+
     do {
         std::cout << "\n=== ГЛАВНОЕ МЕНЮ ===\n"
                   << "1 - C-массив\n"
                   << "2 - std::vector\n"
                   << "0 - Выход\n"
                   << "Ваш выбор: ";
-        choice = read_choice();
+
+        int inp;
+        std::cin >> inp;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        choice = static_cast<MainMenu>(inp);
 
         switch (choice) {
-            case 1: run_array_menu();  break;
-            case 2: run_vector_menu(); break;
-            case 0: std::cout << "Выход\n"; break;
+            case ARRAY: run_array_menu();  break;
+            case VECTOR: run_vector_menu(); break;
+            case EXIT: std::cout << "Выход\n"; break;
             default: std::cout << "Неверный выбор\n";
         }
-    } while (choice != 0);
+    } while (choice != EXIT);
 
     return 0;
 }
