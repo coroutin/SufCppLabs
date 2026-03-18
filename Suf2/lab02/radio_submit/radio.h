@@ -1,5 +1,7 @@
+#pragma once
 #include <iostream>
-using namespace std;
+
+char getch();
 
 class Radio {
 private:
@@ -33,4 +35,37 @@ public:
             this->station = station;
         }
     }
+    void incVolume() {
+        Radio::setVolume(getVolume() + 1);
+    }
+
+    void decVolume() {
+        Radio::setVolume(getVolume() - 1);
+    }
+
+    void nextStation() {
+        if (station == MAX_STATION) {
+            setStation(MIN_STATION);
+        } else {
+            setStation(station + 1);
+        }
+    }
+
+    void previousStation() {
+        if (station == MIN_STATION) {
+            setStation(MAX_STATION);
+        } else {
+            setStation(station - 1);
+        }
+    }
+
+    void print() const {
+        std::cout << "Громкость: " << volume
+             << " | Станция: " << station << std::endl;
+    }
 };
+
+const unsigned int Radio::MIN_VOLUME;
+const unsigned int Radio::MAX_VOLUME;
+const unsigned int Radio::MIN_STATION;
+const unsigned int Radio::MAX_STATION;

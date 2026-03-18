@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 class Radio {
 private:
     unsigned int volume;
@@ -31,6 +28,29 @@ public:
     void setStation(unsigned int const & station) {
         if (station >= MIN_STATION && station <= MAX_STATION) {
             this->station = station;
+        }
+    }
+    void incVolume() {
+        Radio::setVolume(getVolume() + 1);
+    }
+
+    void decVolume() {
+        Radio::setVolume(getVolume() - 1);
+    }
+
+    void nextStation() {
+        if (station == MAX_STATION) {
+            setStation(MIN_STATION);
+        } else {
+            setStation(station + 1);
+        }
+    }
+
+    void previousStation() {
+        if (station == MIN_STATION) {
+            setStation(MAX_STATION);
+        } else {
+            setStation(station - 1);
         }
     }
 };
