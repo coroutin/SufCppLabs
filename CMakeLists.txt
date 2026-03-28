@@ -76,8 +76,14 @@ add_executable(lab04_task10 Suf1/lab04/task10.cpp)
 add_executable(lab04_task11 Suf1/lab04/task11.cpp)
 add_executable(lab04_task12 Suf1/lab04/task12.cpp)
 add_executable(lab04_task13 Suf1/lab04/task13.cpp)
-add_executable(lab04_task14 Suf1/lab04/task14/main.cpp Suf1/lab04/task14/task14.cpp)
-add_executable(lab04_task15 Suf1/lab04/task15/main.cpp Suf1/lab04/task15/task15.cpp)
+add_executable(lab04_task14
+        Suf1/lab04/task14/main.cpp
+        Suf1/lab04/task14/task14.cpp
+)
+add_executable(lab04_task15
+        Suf1/lab04/task15/main.cpp
+        Suf1/lab04/task15/task15.cpp
+)
 
 #Лабораторная работа 5
 add_executable(lab05_task2 Suf1/lab05/task2.cpp)
@@ -123,7 +129,10 @@ add_executable(lab08_task9-10 Suf1/lab08/task9-10.cpp)
 add_executable(lab08_task11 Suf1/lab08/task11.cpp)
 add_executable(lab08_task12 Suf1/lab08/task12.cpp)
 add_executable(lab08_task13 Suf1/lab08/task13.cpp)
-add_executable(lab08_task Suf1/lab08/task_submit/main.cpp Suf1/lab08/task_submit/array_funcs.cpp)
+add_executable(lab08_task
+        Suf1/lab08/task_submit/main.cpp
+        Suf1/lab08/task_submit/array_funcs.cpp
+)
 
 #Лабораторная работа 9
 add_executable(lab09_task1 Suf1/lab09/task1.cpp)
@@ -159,7 +168,11 @@ add_executable(lab10_task8_1 Suf1/lab10/task8_1.cpp)
 add_executable(lab10_task8_2 Suf1/lab10/task8_2.cpp)
 add_executable(lab10_task9 Suf1/lab10/task9.cpp)
 add_executable(lab10_task10 Suf1/lab10/task10.cpp)
-add_executable(lab10_task_submit Suf1/lab10/task_submit/main.cpp Suf1/lab10/task_submit/task.cpp Suf1/lab10/task_submit/task.h)
+add_executable(lab10_task_submit
+        Suf1/lab10/task_submit/main.cpp
+        Suf1/lab10/task_submit/task.cpp
+        Suf1/lab10/task_submit/task.h
+)
 
 #Лабораторная работа 11
 add_executable(lab11_task1 Suf1/lab11/task1.cpp)
@@ -201,19 +214,19 @@ add_executable(lab13_task6 Suf1/lab13/task6.cpp)
 #=================================
 
 #Лабораторная работа 1
-add_executable(lab01_task_submit Suf2/lab01/task_submit/main.cpp Suf2/lab01/task_submit/Employee/Employee.cpp Suf2/lab01/task_submit/Employee/Employee.h Suf2/lab01/task_submit/Array/Array_func.h Suf2/lab01/task_submit/Array/Array_func.cpp Suf2/lab01/task_submit/Vector/Vector_func.h Suf2/lab01/task_submit/Vector/Vector_func.cpp)
+add_subdirectory(Suf2/lab01)
 
 #Лабораторная работа 2
-add_executable(lab02_radio_submit Suf2/lab02/radio_submit/radio.cpp Suf2/lab02/radio_submit/radio.h)
-add_executable(lab02_statistic_submit Suf2/lab02/statistic_submit/main.cpp Suf2/lab02/statistic_submit/statistics.cpp Suf2/lab02/statistic_submit/statistics.h)
+add_subdirectory(Suf2/lab02)
 
-set(CURSES_INCLUDE_DIR /opt/homebrew/opt/ncurses/include)
-set(CURSES_LIBRARIES /opt/homebrew/opt/ncurses/lib/libncurses.dylib)
+#Лабораторная работа 3
+add_subdirectory(Suf2/lab03)
 
-add_executable(fifteen Suf2/lab03/fifteen.h Suf2/lab03/fifteen.cpp Suf2/lab03/main.cpp)
+#Лабораторная работа 4
+add_subdirectory(Suf2/lab04)
 
-target_include_directories(fifteen PRIVATE ${CURSES_INCLUDE_DIR})
-target_link_libraries(fifteen PRIVATE ${CURSES_LIBRARIES})
+#Лабораторная работа 5
+add_subdirectory(Suf2/lab05)
 
 #Трэш
 set(CURSES_INCLUDE_DIR /opt/homebrew/opt/ncurses/include)

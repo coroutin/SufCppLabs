@@ -1,4 +1,4 @@
-#include "fifteen.h"
+#include "../fifteen.h"
 #include <chrono>
 #include <ncurses.h>
 #include <random>

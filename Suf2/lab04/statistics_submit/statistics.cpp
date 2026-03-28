@@ -57,6 +57,9 @@ void printMenu() {
     std::cout << "9. Добавить данные" << std::endl;
     std::cout << "10. Сравнить статистики" << std::endl;
     std::cout << "11. Удалить срез" << std::endl;
+    std::cout << "12. Вывести всю статистику" << std::endl;
+    std::cout << "13. Ввести новую статистику" << std::endl;
+    std::cout << "14. Срез через start finish" << std::endl;
     std::cout << "0. Выход" << std::endl;
     std::cout << "Выберите операцию: ";
 }

@@ -9,11 +9,14 @@ enum class Operation {
     ABOVE_AVERAGE,
     MAX_SALES,
     MIN_SALES,
-    GET_BY_INDEX = 7,
-    GET_SLICE = 8,
-    MERGE = 9,
-    COMPARE      = 10,
-    DELETE_SLICE = 11,
+    GET_BY_INDEX,
+    GET_SLICE,
+    MERGE,
+    COMPARE,
+    DELETE_SLICE,
+    PRINT,
+    READ,
+    GET_SLICE2,
     EXIT = 0
 };
 
@@ -71,7 +74,7 @@ int main() {
                 size_t idx;
                 std::cin >> idx;
                 try {
-                    std::cout << "Значение: " << stat[idx] << std::endl;
+                    std::cout << "Значение: delete" << std::endl;
                 } catch (std::exception e) {
                     std::cout << e.what() << std::endl;
                 }
@@ -84,9 +87,9 @@ int main() {
                 std::cin >> start >> finish;
                 try {
                     Statistic slice = stat.getSlice(start, finish);
-                    std::cout << "Срез: ";
+                    std::cout << "Срез: delete";
                     for (size_t i = 0; i < slice.size(); i++)
-                        std::cout << slice[i] << " ";
+                        std::cout << " ";
                     std::cout << std::endl;
                 } catch (std::exception e) {
                     std::cout << e.what() << std::endl;
@@ -122,6 +125,30 @@ int main() {
                 try {
                     stat.deleteSlice(start, finish);
                     std::cout << "Срез удалён." << std::endl;
+                } catch (std::exception e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            }
+            case Operation::PRINT:
+                std::cout << stat << std::endl;
+                break;
+
+            case Operation::READ: {
+                std::cout << "Введите данные: ";
+                std::cin.ignore();
+                std::cin >> stat;
+                std::cout << "Загружено: " << stat << std::endl;
+                break;
+            }
+
+            case Operation::GET_SLICE2: {
+                std::cout << "Введите начало и конец среза: ";
+                size_t start, finish;
+                std::cin >> start >> finish;
+                try {
+                    Statistic slice = stat[start][finish];
+                    std::cout << "Срез: " << slice << std::endl;
                 } catch (std::exception e) {
                     std::cout << e.what() << std::endl;
                 }
