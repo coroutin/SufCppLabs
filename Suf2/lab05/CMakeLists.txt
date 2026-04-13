@@ -8,7 +8,7 @@ target_include_directories(FractionLib PUBLIC FractionLib/)
 
 # --- Google Test ---
 include(FetchContent)
-FetchContent_Declare(
+        FetchContent_Declare(
         googletest
         URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
         DOWNLOAD_EXTRACT_TIMESTAMP true

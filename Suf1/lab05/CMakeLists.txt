@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.14)
+
+add_executable(lab05_task2 task2.cpp)
+add_executable(lab05_task4 task4.cpp)
+add_executable(lab05_task6 task6.cpp)
+add_executable(lab05_task8 task8.cpp)
+add_executable(lab05_task10 task10.cpp)
+add_executable(lab05_task12 task12.cpp)
+add_executable(lab05_task13 task13.cpp)
+add_executable(lab05_task14 task14.cpp)
+add_executable(lab05_task15 task15_submit.cpp)
+add_executable(lab05_task17 task17.cpp)
+add_executable(lab05_task18 task18.cpp)
