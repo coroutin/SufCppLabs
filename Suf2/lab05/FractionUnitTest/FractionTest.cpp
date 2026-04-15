@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <sstream>
 #include "Fraction.h"
+#include "Indexer.h"
 
 // Конструктор без аргументов создаёт дробь 0/1
 TEST(FractionTest, TestConstructorWithoutArgs) {
@@ -309,4 +310,75 @@ TEST(FractionTest, TestOverflowMultiply) {
     Fraction result = a * b;
     EXPECT_EQ(1, result.getNumerator());
     EXPECT_EQ(2, result.getDenominator());
+}
+
+// ===== Indexer =====
+
+// Геттеры возвращают offset и len, переданные в конструктор
+TEST(IndexerTest, TestGetters) {
+    double arr[] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    Indexer idx(arr, 2, 3);
+    EXPECT_EQ(2, idx.getOffset());
+    EXPECT_EQ(3, idx.getLen());
+}
+
+// operator[] возвращает элемент массива с учётом offset
+TEST(IndexerTest, TestAccessWithOffset) {
+    double arr[] = {10.0, 20.0, 30.0, 40.0};
+    Indexer idx(arr, 1, 3);
+    EXPECT_DOUBLE_EQ(20.0, idx[0]);
+    EXPECT_DOUBLE_EQ(30.0, idx[1]);
+    EXPECT_DOUBLE_EQ(40.0, idx[2]);
+}
+
+// Неконстантный operator[] позволяет изменять элемент через индексер
+TEST(IndexerTest, TestWriteAccess) {
+    double arr[] = {1.0, 2.0, 3.0};
+    Indexer idx(arr, 0, 3);
+    idx[1] = 99.0;
+    EXPECT_DOUBLE_EQ(99.0, arr[1]);
+}
+
+// Константный operator[] возвращает значение, но не даёт писать
+TEST(IndexerTest, TestConstAccess) {
+    double arr[] = {5.0, 6.0, 7.0};
+    const Indexer idx(arr, 0, 3);
+    EXPECT_DOUBLE_EQ(6.0, idx[1]);
+}
+
+// Выход за правую границу вызывает исключение out_of_range
+TEST(IndexerTest, TestOutOfRangeHigh) {
+    double arr[] = {1.0, 2.0, 3.0};
+    Indexer idx(arr, 0, 3);
+    EXPECT_THROW(idx[3], std::out_of_range);
+}
+
+// Отрицательный индекс вызывает исключение out_of_range
+TEST(IndexerTest, TestOutOfRangeLow) {
+    double arr[] = {1.0, 2.0, 3.0};
+    Indexer idx(arr, 0, 3);
+    EXPECT_THROW(idx[-1], std::out_of_range);
+}
+
+// Передача nullptr вызывает исключение invalid_argument
+TEST(IndexerTest, TestNullptrThrows) {
+    EXPECT_THROW(Indexer(nullptr, 0, 3), std::invalid_argument);
+}
+
+// Отрицательный offset вызывает исключение invalid_argument
+TEST(IndexerTest, TestNegativeOffsetThrows) {
+    double arr[] = {1.0, 2.0};
+    EXPECT_THROW(Indexer(arr, -1, 2), std::invalid_argument);
+}
+
+// Нулевой len вызывает исключение invalid_argument
+TEST(IndexerTest, TestZeroLenThrows) {
+    double arr[] = {1.0, 2.0};
+    EXPECT_THROW(Indexer(arr, 0, 0), std::invalid_argument);
+}
+
+// Отрицательный len вызывает исключение invalid_argument
+TEST(IndexerTest, TestNegativeLenThrows) {
+    double arr[] = {1.0, 2.0};
+    EXPECT_THROW(Indexer(arr, 0, -1), std::invalid_argument);
 }

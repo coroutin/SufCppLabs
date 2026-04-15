@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.14)
 # --- Статическая библиотека ---
 add_library(FractionLib STATIC
         FractionLib/Fraction.cpp
+        Indexer/Indexer.cpp
 )
+target_include_directories(FractionLib PUBLIC Indexer/)
 target_include_directories(FractionLib PUBLIC FractionLib/)
 
 # --- Google Test ---
