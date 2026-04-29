@@ -69,6 +69,12 @@ add_subdirectory(Suf2/lab04)
 #Лабораторная работа 5
 add_subdirectory(Suf2/lab05)
 
+#Лабораторная работа 6
+add_subdirectory(Suf2/lab06)
+
+#Лабораторная работа 7
+add_subdirectory(Suf2/lab07)
+
 #Трэш
 set(CURSES_INCLUDE_DIR /opt/homebrew/opt/ncurses/include)
 set(CURSES_LIBRARIES /opt/homebrew/opt/ncurses/lib/libncurses.dylib)

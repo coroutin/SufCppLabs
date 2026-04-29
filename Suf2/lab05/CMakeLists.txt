@@ -21,6 +21,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(FractionTests
         FractionUnitTest/FractionTest.cpp
 )
+
 target_link_libraries(FractionTests PRIVATE
         FractionLib
         GTest::gtest_main
